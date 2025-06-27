@@ -9,6 +9,8 @@ import net.java.ems.repository.EmployeeRepository;
 import net.java.ems.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,5 +30,10 @@ public class EmployeeServiceImpl implements EmployeeService {
        Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with given id : " + employeeId));
         return EmployeeMapper.mapToEmployeeDto(employee);
+    }
+
+    @Override
+    public List<EmployeeDto> getAllEmployees() {
+        return null;
     }
 }
