@@ -3,6 +3,7 @@ package net.java.ems.service.impl;
 import lombok.AllArgsConstructor;
 import net.java.ems.dto.DepartmentDto;
 import net.java.ems.entity.Department;
+import net.java.ems.exception.ResourceNotFoundException;
 import net.java.ems.mapper.DepartmentMapper;
 import net.java.ems.repository.DepartmentRepository;
 import net.java.ems.service.DepartmentService;
@@ -18,5 +19,13 @@ public class DepartmentServiceImpl implements DepartmentService {
         Department department = DepartmentMapper.mapToDepartment(departmentDto);
         Department savedDepartment = departmentRepository.save(department);
         return DepartmentMapper.mapToDepartmentDto(savedDepartment);
+    }
+
+    @Override
+    public DepartmentDto getDepartmentById(Long departmentId) {
+      Department department =  departmentRepository.findById(departmentId)
+              .orElseThrow(() -> new ResourceNotFoundException("Department is not found with id: " + departmentId));
+
+        return DepartmentMapper.mapToDepartmentDto(department);
     }
 }
