@@ -19,5 +19,5 @@ public class Department {
     @Column(name = "department_name")
     private String departmentName;
     @Column(name = "department_description")
-    private String getDepartmentDescription;
+    private String DepartmentDescription;
 }

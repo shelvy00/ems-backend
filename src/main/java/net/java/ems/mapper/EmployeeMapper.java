@@ -6,10 +6,11 @@ import net.java.ems.entity.Employee;
 public class EmployeeMapper {
 
     public static EmployeeDto mapToEmployeeDto(Employee employee) {
-        return new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmail(), employee.getDepartment().getId());
+        return new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmail(),
+                employee.getDepartment() != null ? employee.getDepartment().getId() : null);
     }
 
-    public static  Employee mapToEmployee(EmployeeDto employeeDto) {
+    public static Employee mapToEmployee(EmployeeDto employeeDto) {
         Employee employee = new Employee();
         employee.setId(employeeDto.getId());
         employee.setFirstName(employeeDto.getFirstName());
